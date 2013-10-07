@@ -24,18 +24,6 @@
           %td= showtime.location
           %td= showtime.time
 
-    / %form{action: "/movies/#{@movie.id}/showtimes", method: "post"}
-    /   .location
-    /     %label Location
-    /     %input{type: "text"}
-      
-    /   .time
-    /     %label Time
-    /     %input{type: "text"}
-      
-    /   .submit
-    /     %input.button{name: "commit", type: "submit", value: "Create Showtime"}
-
     = form_for [@movie, @showtime] do |f|
       .location
         = f.label :location
@@ -45,3 +33,21 @@
         = f.text_field :time
       .submit
         = f.submit 'Create Showtime', :class => "button"
+
+  #comments
+    %h2.centered Comments
+
+    %table
+      %thead
+        %th Comment
+      %tbody
+      - @comments.each do |comment|
+        %tr
+          %td= comment.comment
+
+    = form_for [@movie, @comment] do |f|
+      .location
+        = f.label :comment
+        = f.text_field :comment
+      .submit
+        = f.submit 'Post Comment', :class => "button"

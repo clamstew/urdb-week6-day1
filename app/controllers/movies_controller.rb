@@ -10,8 +10,11 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.json
   def show
-    @showtimes = @movie.showtimes
+    @showtimes = @movie.showtimes.sort_by &:time
     @showtime = @movie.showtimes.new
+
+    @comments = @movie.comments
+    @comment = @movie.comments.new
   end
 
   # GET /movies/new
